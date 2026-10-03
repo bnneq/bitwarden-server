@@ -14,6 +14,8 @@ public interface IGlobalSettings
     string LicenseDirectory { get; set; }
     string LicenseCertificatePassword { get; set; }
     string LicenseCertificatePath { get; set; }
+    string SelfHostedLicenseCertificatePath { get; set; }
+    string SelfHostedLicenseCertificateSha256 { get; set; }
     int OrganizationInviteExpirationHours { get; set; }
     int TwoFactorUserVerificationTokenLifetimeInMinutes { get; set; }
     int DeviceLastActivityCacheTtlHours { get; set; }

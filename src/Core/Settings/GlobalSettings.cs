@@ -39,6 +39,10 @@ public class GlobalSettings : IGlobalSettings
     }
     public string LicenseCertificatePassword { get; set; }
     public string LicenseCertificatePath { get; set; }
+    /// <summary>Optional operator-owned public certificate for self-hosted license verification.</summary>
+    public string SelfHostedLicenseCertificatePath { get; set; }
+    /// <summary>SHA-256 fingerprint pin for the operator-owned public certificate.</summary>
+    public string SelfHostedLicenseCertificateSha256 { get; set; }
     public virtual string PushRelayBaseUri { get; set; }
     public virtual string InternalIdentityKey { get; set; }
     public virtual string OidcIdentityClientKey { get; set; }
