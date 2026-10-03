@@ -247,3 +247,7 @@ bitwarden_license/src/Sso/Sso.zip
 # Claude Code
 CLAUDE.local.md
 .worktrees/
+
+# Operator-owned licensing keys and generated licenses
+.local-licensing/
+util/LocalLicensing/__pycache__/

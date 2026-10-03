@@ -47,6 +47,8 @@ public class LicensingServiceTests
         var settings = fixture.Create<IGlobalSettings>();
         settings.LicenseDirectory = LicenseDirectory;
         settings.SelfHosted = true;
+        settings.SelfHostedLicenseCertificatePath = null;
+        settings.SelfHostedLicenseCertificateSha256 = null;
 
         return new SutProvider<LicensingService>(fixture)
             .SetDependency(settings)

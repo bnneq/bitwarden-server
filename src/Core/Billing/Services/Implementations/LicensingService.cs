@@ -132,6 +132,14 @@ public class LicensingService : ILicensingService
         {
             throw new InvalidOperationException("No license directory.");
         }
+
+        // Operator-owned trust is additive and opt-in; built-in trust and all license checks remain intact.
+        var selfHostedCertificate = SelfHostedLicenseCertificate.Load(_globalSettings);
+        if (selfHostedCertificate != null)
+        {
+            _verificationCertificates.Add(selfHostedCertificate);
+            _logger.LogWarning("Operator-owned self-hosted license certificate is enabled.");
+        }
     }
 
     public async Task ValidateOrganizationsAsync()
