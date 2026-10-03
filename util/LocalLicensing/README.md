@@ -1,5 +1,26 @@
 # Operator-owned Premium licensing for this fork
 
+For the specific MariaDB-backed Lite Compose layout (`bitwarden`,
+`bitwarden-db`, `./bwdata`, `./db`, `.env`) see `install-lite.sh`. Run it from
+the Compose directory, optionally passing the exact verified account email.
+It requires running server version **2026.9.2**, builds against the reviewed
+source commit, preserves the running image's Lite packaging/Web Vault, takes
+a cold snapshot of both bind mounts and configuration, and automatically
+applies the signed license plus only the account's entitlement/revision
+fields using an administrative SQL transaction. It does not use the Web Vault
+import endpoint or access master passwords/vault encryption keys.
+
+The installer stores the encrypted issuer key and a 0600 password file under
+the host's owner-only `.local-licensing` directory. Only the public certificate
+and account license enter the application container. It provides automatic
+rollback on errors during maintenance plus a one-time `rollback.sh` in the
+snapshot directory. **Rollback restores the entire database and bwdata to the
+snapshot time**, retaining the failed directories for investigation; do not
+use an old rollback snapshot after subsequently saving new vault data without
+accounting for those changes. Default license validity is 365 days. Real
+Docker image construction and deployment of the installer have not been
+tested in this execution environment.
+
 This fork can verify individual Premium licenses signed by an operator-owned RSA
 key in **Production** self-hosted deployments. Existing license import, account
 updates, JWT signature validation, expiration checks and client synchronization
